@@ -6,39 +6,32 @@ const toDos = [];
 document.getElementById("add-btn").addEventListener("click", () => {
     addToDo();
     trClear();
-    createTable();
+    createTable(toDos);
 });
 
 // ラジオボタンを選択時の処理
 const radioChecks = document.getElementsByName("taskState");
 radioChecks.forEach((radio) => {
     radio.addEventListener("change", () => {
+        trClear();
         displayChange();
     });
 });
 
-//　hideクラスを付与する関数
-// 汚いコード　もっとスマートに書きたい部分
+//　フィルターした配列を引数にして、createTableを発動させる関数
 const displayChange = () => {
-    const tr = document.getElementsByClassName("todo")
     if (radioChecks[0].checked) {
-        for (let i = 0; i < tr.length; i++) {
-            tr[i].classList.remove("hide");
-        };
+        createTable(toDos);
     } else if (radioChecks[1].checked) {
-        for (let i = 0; i < tr.length; i++) {
-            tr[i].classList.remove("hide");
-            if (toDos[i].state !== "doing") {
-                tr[i].classList.add("hide");
-            };
-        };
+        filToDos = toDos.filter((todo) => {
+            return todo.state === "doing";
+        });
+        createTable(filToDos);
     } else {
-        for (let i = 0; i < tr.length; i++) {
-            tr[i].classList.remove("hide");
-            if (toDos[i].state !== "done") {
-                tr[i].classList.add("hide");
-            };
-        };
+        filToDos = toDos.filter((todo) => {
+            return todo.state === "done";
+        });
+        createTable(filToDos);
     };
 };
 
@@ -58,8 +51,8 @@ const trClear = () => {
 };
 
 //　テーブル作成関数
-const createTable = () => {
-    toDos.forEach( (todo) => {
+const createTable = (toDo) => {
+    toDo.forEach( (todo) => {
         const tr = document.createElement("tr");
         tr.classList.add("todo");
 
@@ -98,7 +91,7 @@ const createStateBtn = (todo) => {
             todo.state = "doing";
         };
         trClear();
-        createTable();
+        displayChange();
     });
     return stateBtn;
 };
@@ -113,7 +106,6 @@ const createDeleteBtn = (todo) => {
         const id = toDos.indexOf(todo);
         toDos.splice(id, 1);
         trClear();
-        createTable();
         displayChange();
     });
     return deleteBtn;
