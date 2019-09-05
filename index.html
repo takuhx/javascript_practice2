@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="utf-8">
+        <title>【JavaScript 課題2】簡易Todoリスト</title>
+    </head>
+    <body>
+        <h1>ToDoリスト</h1>
+        <input id="radio1" type="radio" name="taskState" value="all" checked>すべて
+        <input id="radio2" type="radio" name="taskState" value="doing">作業中
+        <input id="radio3" type="radio" name="taskState" value="done">完了
+        <div>
+            <table id="todo-list">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>コメント</th>
+                        <th>状態</th>
+                    </tr>
+                </thead>
+                <tbody id="toDoArea">
+
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h2>新規タスクの追加</h2>
+            <input id="newTask" type="text" name="new-task" placeholder="">
+            <input id="add-btn" type="button" value="追加">
+        </div>
+        <script type="text/javascript" src="script.js"></script>
+    </body>
+</html>
