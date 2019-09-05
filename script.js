@@ -44,7 +44,7 @@ const displayChange = () => {
 
 // Todoを配列に追加する関数
 const addToDo = () => {
-    const target = document.forms.input.newTask;
+    const target = document.getElementById("newTask");
     const inputText = target.value;
     const toDo = {text: inputText, state: "doing"};
     toDos.push(toDo);
@@ -68,7 +68,7 @@ const createTable = () => {
 
         const textTd = document.createElement("td");
         textTd.innerHTML = todo.text;
-        
+
         const btnTd = document.createElement("td");
         const stateBtn = createStateBtn(todo);
         const deleteBtn = createDeleteBtn(todo);
