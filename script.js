@@ -11,11 +11,11 @@ document.getElementById("add-btn").addEventListener("click", () => {
 
 // ラジオボタンを選択時の処理
 const radioChecks = document.getElementsByName("taskState");
-for (let i = 0; i < radioChecks.length; i++) {
-    radioChecks[i].addEventListener("change", () => {
+radioChecks.forEach((radio) => {
+    radio.addEventListener("change", () => {
         displayChange();
     });
-};
+});
 
 //　hideクラスを付与する関数
 // 汚いコード　もっとスマートに書きたい部分
