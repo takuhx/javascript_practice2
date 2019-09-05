@@ -6,7 +6,7 @@ const toDos = [];
 document.getElementById("add-btn").addEventListener("click", () => {
     addToDo();
     trClear();
-    createTable(toDos);
+    displayChange();
 });
 
 // ラジオボタンを選択時の処理
